@@ -149,9 +149,7 @@ function specifyPasswordLength()
       return passwordLength;
     }
 
-  } while (passwordLength  !=  undefined);
-
-  return passwordLength;
+  } while (passwordLength  !=  undefined);                      /* Prompt user until valid answer is given or canceled  */
 }
 
 
@@ -169,18 +167,19 @@ function specifyLowerCase()
 
   do
   {
+                                                                /* Ask user whether character set will be used          */
     includeLowercase = prompt("Include lowercase letters? (y or n)");
 
     if (includeLowercase  ==  undefined)
     {
-      return;
+      return;                                                   /* Return if user canceled password generation          */
     }
-
+                                                                /* Validate and save user choice                        */
     userChoice = charInclusionInputValidation(includeLowercase);
 
-  } while (userChoice  == undefined);
+  } while (userChoice  == undefined);                           /* Prompt user until valid answer is given or canceled  */
 
-  return userChoice;
+  return userChoice;                                            /* Return user's choice                                 */
 }
 
 
@@ -198,18 +197,19 @@ function specifyUpperCase()
 
   do
   {
+                                                                /* Ask user whether character set will be used          */
     includeUppercase = prompt("Include uppercase letters? (y or n)");
 
     if (includeUppercase  ==  undefined)
     {
-      return;
+      return;                                                   /* Return if user canceled password generation          */
     }
-
+                                                                /* Validate and save user choice                        */
     userChoice = charInclusionInputValidation(includeUppercase);
 
-  } while (userChoice  ==  undefined);
+  } while (userChoice  ==  undefined);                          /* Prompt user until valid answer is given or canceled  */
 
-  return userChoice;
+  return userChoice;                                            /* Return user's choice                                 */
 }
 
 
@@ -227,18 +227,19 @@ function specifyNumeric()
 
   do
   {
+                                                                /* Ask user whether character set will be used          */
     includeNumeric = prompt("Include numeric characters? (y or n)");
 
     if (includeNumeric  ==  undefined)
     {
-      return;
+      return;                                                   /* Return if user canceled password generation          */
     }
-
+                                                                /* Validate and save user choice                        */
     userChoice = charInclusionInputValidation(includeNumeric);
 
-  } while (userChoice  ==  undefined);
+  } while (userChoice  ==  undefined);                          /* Prompt user until valid answer is given or canceled  */
 
-  return userChoice;
+  return userChoice;                                            /* Return user's choice                                 */
 }
 
 
@@ -256,18 +257,19 @@ function specifySpecialChars()
 
   do
   {
+                                                                /* Ask user whether character set will be used          */
     includeSpecial = prompt("Include special characters? (y or n)");
 
     if (includeSpecial  ==  undefined)
     {
-      return;
+      return;                                                   /* Return if user canceled password generation          */
     }
-
+                                                                /* Validate and save user choice                        */
     userChoice  =  charInclusionInputValidation(includeSpecial);
 
-  } while (userChoice  ==  undefined);
+  } while (userChoice  ==  undefined);                          /* Prompt user until valid answer is given or canceled  */
 
-  return userChoice;
+  return userChoice;                                            /* Return user's choice                                 */
 }
 
 
