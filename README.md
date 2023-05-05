@@ -27,6 +27,10 @@ An alert appears if the user chooses and invalid password length.
 An alert appears as shown below when user does not enter either "y" or "n".
 ![Invalid User Reponse Alert](./assets/images/invalid-answer.png)
 
+### Password Generation Canceled
+A message will appear when the user has canceled password generation.
+![User Canceled Password Generation](./assets/images/password-generation-canceled.png)
+
 ## Deploy
 This project can be visited by clicking on the following link:
 
