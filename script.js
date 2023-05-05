@@ -287,15 +287,15 @@ function charInclusionInputValidation(userInput)
   if ((userInput.toLowerCase()  !=  "y") &&
       (userInput.toLowerCase()  !=  "n"))
   {
-    alert("Must answer either \"y\" or \"n\".");
-    return undefined;
+    alert("Must answer either \"y\" or \"n\".");                /* Alert user that their answer was not valid           */
+    return undefined;                                           /* Return as undefined if user choice was not valid     */
   }
   else if (userInput.toLowerCase()  ==  "y")
-  {
-    return true;
+  { 
+    return true;                                                /* Return true if user answered in the affirmative      */
   }
   else
   {
-    return false;
+    return false;                                               /* Return false if user answered in the negative        */
   }
 }
