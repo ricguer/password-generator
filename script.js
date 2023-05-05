@@ -9,7 +9,8 @@ function writePassword() {
 
   if (password  == undefined)
   {
-    userCanceledPasswordGen();
+    passwordText.value = "Password generation has been canceled or no criteria was set. Press the \"" + 
+    generateBtn.textContent + "\" button to generate a new password.";
   }
   else
   {
@@ -23,21 +24,11 @@ generateBtn.addEventListener("click", writePassword);
 
 
                                                                 /* ================== CHALLENGE CODE ================== */
-const  MINIMUM_PASSWORD_LENGTH  =  8;                           /* Minimum Password Length                              */
-const  MAXIMUM_PASSWORD_LENGTH  =  128;                         /* Maximum Password Length                              */
-const  LOWERCASE_LETTERS        = "abcdefghijklmnopqrstuvwxyz";
-const  UPPERCASE_LETTERS        = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const  NUMERIC_CHARACTERS       = "0123456789";
-const  SPECIAL_CHARACTERS       = "!@#$%^&*()_+";
-
-
-function userCanceledPasswordGen() 
-{
-  let passwordText = document.querySelector("#password");
-
-  passwordText.value = "Password generation has been canceled. Press the \"" + 
-                        generateBtn.textContent + "\" button to generate a new password.";
-}
+const  MIN_PASSWORD_LENGTH  =   8;                              /* Minimum Password Length                              */
+const  MAX_PASSWORD_LENGTH  =   128;                            /* Maximum Password Length                              */
+const  LOWERCASE_LETTERS    =  "abcdefghijklmnopqrstuvwxyz";    /* Set of English lowercase letters                     */
+const  NUMERIC_CHARACTERS   =  "0123456789";                    /* Set of numbers                                       */
+const  SPECIAL_CHARACTERS   =  "!@#$%^&*()_+";                  /* Set of special characters                            */
 
 /**
  * This function generates a password given certain
@@ -52,75 +43,76 @@ function generatePassword()
   let includeUpperCase;
   let includeNumeric;
   let includeSpecialChars;
-  let validCharacters  =  "";
-  let newPassword      =  "";
+  let validCharacters       =  "";
+  let newPassword           =  "";
 
-  passwordLength       =  specifyPasswordLength();              /* Have user choose a length for thier password           */
+  passwordLength       =  specifyPasswordLength();              /* Have user choose a length for their password         */
 
   if (passwordLength  == undefined)
   {
-    return;
+    return;                                                     /* Return if user did not chose a password length       */
   }
 
-  includeLowercase     =  specifyLowerCase();                   /* Have user specify whether to include lowercase letters */
+  includeLowercase     =  specifyLowerCase();                   /* Have user specify inclusion of lowercase letters     */
 
   if (includeLowercase  ==  true)
   {
-    validCharacters += LOWERCASE_LETTERS;
+    validCharacters += LOWERCASE_LETTERS;                       /* Add lower case letters to string of valid characters */
   }
   else if (includeLowercase  ==  undefined)
   {
-    return;
+    return;                                                     /* Return if user chose to cancel                       */
   }
 
-  includeUpperCase    =  specifyUpperCase();                   /* Have user specify whether to include uppercase letters */
+  includeUpperCase    =  specifyUpperCase();                    /* Have user specify inclusion of uppercase letters     */
 
   if (includeUpperCase  ==  true)
   {
-    validCharacters += UPPERCASE_LETTERS;
+    validCharacters += LOWERCASE_LETTERS.toUpperCase();         /* Add upper case letters to string of valid characters */
   }
   else if (includeUpperCase  ==  undefined)
   {
-    return;
+    return;                                                     /* Return if user to cancel                             */
   }
   
-  includeNumeric       =  specifyNumeric();                     /* Have user specify whether to include numeric chars     */
+  includeNumeric       =  specifyNumeric();                     /* Have user specify whether to include numeric chars   */
 
   if (includeNumeric  ==  true)
   {
-    validCharacters += NUMERIC_CHARACTERS;
+    validCharacters += NUMERIC_CHARACTERS;                      /* Add numbers to string of valid characters            */
   }
   else if (includeNumeric  ==  undefined)
   {
-    return;
+    return;                                                     /* Return if user chose to cancel                       */
   }
 
-  includeSpecialChars  =  specifySpecialChars();                /* Have user specify whether to include special chars     */
+  includeSpecialChars  =  specifySpecialChars();                /* Have user specify whether to include special chars   */
 
   if (includeSpecialChars  ==  true)
   {
-    validCharacters += SPECIAL_CHARACTERS;
+    validCharacters += SPECIAL_CHARACTERS;                      /* Add special characters to valid characters           */
   }
   else if (includeSpecialChars  ==  undefined)
   {
-    return;
+    return;                                                     /* Return if user chose to cancel                       */
   }
 
-  console.log(includeLowercase);
-  console.log(includeUpperCase);
-  console.log(includeNumeric);
-  console.log(includeSpecialChars);
-  console.log(validCharacters);
+                                                                /* Check that user chose at least one character set     */
+  if (includeLowercase     ==  false  &&
+      includeUpperCase     ==  false  &&
+      includeNumeric       ==  false  &&
+      includeSpecialChars  ==  false)
+  {
+    return;                                                     /* Return if user did not chose a character set         */
+  }
 
+                                                                /* Randomly generate password using valid character set */
   for (let index = 0; index < passwordLength; index++) 
   {
-    console.log(validCharacters.charAt(Math.floor(Math.random() * validCharacters.length)));
     newPassword += validCharacters.charAt(Math.floor(Math.random() * validCharacters.length));
   }
 
-  console.log(newPassword);
-
-  return newPassword;
+  return newPassword;                                           /* Return newly generated password                      */
 }
 
 
@@ -146,8 +138,8 @@ function specifyPasswordLength()
     }
 
                                                                 /* Check whether password length met criteria           */
-    if ((passwordLength  <=  MINIMUM_PASSWORD_LENGTH)  ||
-        (passwordLength  >=  MAXIMUM_PASSWORD_LENGTH)) 
+    if ((passwordLength  <=  MIN_PASSWORD_LENGTH)  ||
+        (passwordLength  >=  MAX_PASSWORD_LENGTH)) 
     {
                                                                 /* Alert user: password length did not meet criteria    */
       alert("Password did not meet the requirements. Must be at least 8 characters and no more than 128 characters.");
