@@ -34,4 +34,4 @@ A message will appear when the user has canceled password generation.
 ## Deploy
 This project can be visited by clicking on the following link:
 
-
+https://ricguer.github.io/password-generator/
